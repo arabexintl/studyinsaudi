@@ -45,9 +45,9 @@ window.PROGRAMS = [{"uni":"King Khalid University","city":"Abha","site":"https:/
     };
   }
   function parseDcText(src) {
-    const openMatch = /<x-dc(?:\s[^>]*)?>/.exec(src);
+    const openMatch = /<[x]-dc(?:\s[^>]*)?>/.exec(src);
     if (!openMatch) return null;
-    const close = src.lastIndexOf("</x-dc>");
+    const close = src.lastIndexOf("<\/x-dc>");
     if (close === -1 || close < openMatch.index) return null;
     const template = src.slice(openMatch.index + openMatch[0].length, close);
     const doc = new DOMParser().parseFromString(src, "text/html");
@@ -1676,7 +1676,7 @@ window.PROGRAMS = [{"uni":"King Khalid University","city":"Abha","site":"https:/
           console.error(
             '[dc-runtime] sibling fetch for "' + name + '":',
             url,
-            "has no <x-dc> block \u2014 not a Design Component."
+            "has no <\x78-dc> block \u2014 not a Design Component."
           );
           return;
         }
